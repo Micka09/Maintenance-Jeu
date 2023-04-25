@@ -14,6 +14,8 @@ public class MovePlayer : MonoBehaviour
     public bool isJumping;
     public bool isGrounded;
 
+    public SpriteRenderer sprite;
+
     public Transform groundRight;
     public Transform groundLeft;
     
@@ -29,6 +31,8 @@ public class MovePlayer : MonoBehaviour
             isJumping = true;
         }
 
+        Regard(body.velocity.x);
+
         PlayerMovement(horizontalmouvement);
         
     }
@@ -41,6 +45,22 @@ public class MovePlayer : MonoBehaviour
 
             body.AddForce(new Vector2 (0f, jumpForce));
             isJumping= false;
+        }
+
+    }
+
+    void Regard(float regard)
+    {
+        if (regard > 0.1f)
+
+        {
+            sprite.flipX = false;
+
+        }
+        else if (regard < -0.1f)
+
+        {
+            sprite.flipX = true;
         }
 
     }
